@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = ({ title = 'Contact Me' }) => {
   const [formStatus, setFormStatus] = useState('');
@@ -12,14 +13,27 @@ const Contact = ({ title = 'Contact Me' }) => {
     setIsSubmitting(true);
     setFormStatus('Sending...');
 
-    // Mock submission
-    setTimeout(() => {
-      setFormStatus('Message sent successfully!');
-      e.target.reset();
-      setIsSubmitting(false);
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        e.target,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setFormStatus('Message sent successfully!');
+          e.target.reset();
+          setIsSubmitting(false);
 
-      setTimeout(() => setFormStatus(''), 3000);
-    }, 2000);
+          setTimeout(() => setFormStatus(''), 3000);
+        },
+        (error) => {
+          console.error('EmailJS Error:', error);
+          setFormStatus('Failed to send message. Try again.');
+          setIsSubmitting(false);
+        }
+      );
   };
 
   return (
@@ -94,7 +108,11 @@ const Contact = ({ title = 'Contact Me' }) => {
               type="submit"
               disabled={isSubmitting}
               className={`bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 w-full md:w-auto
-                ${isSubmitting ? 'opacity-60 cursor-not-allowed' : 'hover:bg-indigo-600'}
+                ${
+                  isSubmitting
+                    ? 'opacity-60 cursor-not-allowed'
+                    : 'hover:bg-indigo-600'
+                }
               `}
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
