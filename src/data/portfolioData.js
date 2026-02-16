@@ -1,6 +1,7 @@
 const portfolioData = {
   name: "Abhilash",
-  title: "Frontend Developer & UI/UX Enthusiast",
+  title: "Full Stack Developer",
+  photo: "/abhi_photo.png",
   about: "I'm a passionate developer with a knack for creating beautiful, functional, and user-centered digital experiences. With a strong foundation in modern frontend technologies, I love turning complex problems into simple, elegant solutions. When I'm not coding, you can find me exploring the latest design trends or contributing to open-source projects.",
   projects: [
     {

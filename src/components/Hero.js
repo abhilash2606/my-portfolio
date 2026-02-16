@@ -33,31 +33,40 @@
 import React from 'react';
 import scrollToSection from '../utils/scrollToSection';
 
-const Hero = ({ title }) => {
+const Hero = ({ title, photo }) => {
   return (
     <section
       id="hero"
       className="min-h-[calc(100vh-68px)] flex items-center"
       aria-labelledby="hero-heading"
     >
-      <div className="max-w-3xl">
-        <h1
-          id="hero-heading"
-          className="text-5xl md:text-7xl font-bold text-white mb-4"
-        >
-          {title}
-        </h1>
+      <div className="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
+        <div className="flex-shrink-0">
+          <img
+            src={photo}
+            alt="Profile"
+            className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-indigo-500 shadow-xl"
+          />
+        </div>
+        <div className="max-w-3xl">
+          <h1
+            id="hero-heading"
+            className="text-5xl md:text-7xl font-bold text-white mb-4"
+          >
+            {title}
+          </h1>
 
-        <p className="text-lg md:text-xl text-gray-400 mb-8">
-          I design and build beautiful and responsive web applications.
-        </p>
+          <p className="text-lg md:text-xl text-gray-400 mb-8">
+            I design and build beautiful and responsive web applications.
+          </p>
 
-        <button
-          onClick={(e) => scrollToSection(e, 'contact')}
-          className="bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105"
-        >
-          Get In Touch
-        </button>
+          <button
+            onClick={(e) => scrollToSection(e, 'contact')}
+            className="bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105"
+          >
+            Get In Touch
+          </button>
+        </div>
       </div>
     </section>
   );

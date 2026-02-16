@@ -86,7 +86,7 @@ function App() {
       <Header name={portfolioData.name} />
 
       <main className="container mx-auto px-6">
-        <Hero title={portfolioData.title} />
+        <Hero title={portfolioData.title} photo={portfolioData.photo} />
         <About about={portfolioData.about} />
         <Projects projects={portfolioData.projects} />
         <Skills skills={portfolioData.skills} />
